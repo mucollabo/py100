@@ -33,11 +33,15 @@ def download_bok_statistics_by_keyword():
         items3 = driver.find_element_by_css_selector('a[class="a-c4-list ng-binding"]')
         driver.implicitly_wait(3)
         
-        items = items1[1:] + items2 + items3
+        print(items1.text)
+        print(items2.text)
+        print(items3.text)
+        items = items1.text #+ items2.text + items3.text
+        print(items)
         
         for idx, item in enumerate(items):
-            if keyword in item.text:
-                print("검색어 '%s'에 매칭되는 '%s' 통계지표를 검색 중..." % (keyword, item.text))
+            if keyword in item:
+                print("검색어 '%s'에 매칭되는 '%s' 통계지표를 검색 중..." % (keyword, item))
                 item.click()
                 item_found = 1
                 time.sleep(5)
@@ -55,7 +59,7 @@ def download_bok_statistics_by_keyword():
     driver.close()
     
 
-    table_items = soup.find_all('tr', {'class':'ng-scope'})
+    table_items = soup.find_all('td', {'class':'ng-binding'})
     date = [t.text for i, t in enumerate(table_items) if i % 3 == 0]
     value = [t.text for i, t in enumerate(table_items) if i % 3 == 1]
     change = [t.text for i, t in enumerate(table_items) if i % 3 == 2]
