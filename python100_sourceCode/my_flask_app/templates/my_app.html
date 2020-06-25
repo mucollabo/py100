@@ -1,0 +1,15 @@
+﻿<!doctype html>
+<html>
+    <head>
+        <title>관심상품 리스트</title>
+    </head>
+    <body>
+        <div class=items>
+            <ul>
+            {% for item in items %}
+                <li><h3>{{ item[0] }}</h3><p>가격: {{ item[1] }}원 </p><a href='{{ item[2] }}'>(상세정보 바로가기)</a></li>
+            {% endfor %}
+            </ul>           
+        </div>
+    </body>
+</html>
