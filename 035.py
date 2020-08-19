@@ -7,3 +7,20 @@ print(df.head())
 print('\n')
 print(df.columns.values)
 
+# 상관계수를 구해서 히트맵으로 그리기
+plt.figure(figsize=(10, 10))
+corr = df.loc[:,'sepal_length':'petal_width'].corr()
+print(corr.head())
+print('\n')
+
+# 히트맵 ㅡ리기
+sns.set(font_scale=1.5)
+sns.heatmap(corr,
+            annot=True,
+            cmap='PuBuGn',
+            fmt='.1f',
+            square=True,
+            linewidth=0.5,
+            cbar=False)
+
+plt.show()
