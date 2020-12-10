@@ -3,8 +3,8 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import re
 
-def read_danawa_wishlist():
 
+def read_danawa_wishlist():
     driver = webdriver.Chrome("../Selenium/chromedriver")
     driver.implicitly_wait(3)
     driver.get("https://www.danawa.com/")
@@ -37,9 +37,9 @@ def read_danawa_wishlist():
     wish_table = soup.select('table[class="tbl wish_tbl"]')[0]
     wish_items = wish_table.select('tbody tr')
 
-    titles = []
-    prices = []
-    links = []
+    titles = [];
+    prices = [];
+    links = [];
 
     for item in wish_items:
         title = item.find('div', {'class': 'tit'}).text
@@ -55,6 +55,7 @@ def read_danawa_wishlist():
     data = pd.DataFrame(result)
 
     return data
+
 
 data = read_danawa_wishlist()
 print(data, '\n')
@@ -79,6 +80,7 @@ print(update_db, '\n')
 # 데이터프레임을 DB에 업로드 (테이블 추가)
 import sqlite3
 import os
+
 db_file = os.path.join(os.getcwd(), 'danawa.sqlite')
 conn = sqlite3.connect(db_file)
 update_db.to_sql('Product', conn, if_exists='replace')

@@ -1,0 +1,14 @@
+h3 {
+    font-style: italic;
+    font-weight: bold;
+}
+
+#price {
+    color: red;
+    font-size: 13px;
+}
+
+.items {
+    color: green;
+    font-size: 15px;
+}
